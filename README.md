@@ -34,6 +34,17 @@ export $(cat .env | xargs)
 ```
 
 
+### 3. ホームディレクトリにシンボリックリンクを作成する
+
+複数のプロジェクトで共通の `.clineconfig.yaml` を使用したい場合、ホームディレクトリにシンボリックリンクを作成すると便利です：
+
+```bash
+ln -sf $(pwd)/.clineconfig.yaml ~/.clineconfig.yaml
+```
+
+> これにより、VS Code 上でもグローバルな Cline 設定として自動で読み込まれるようになります。
+
+
 ## 📁 ディレクトリ構成と配置場所
 
 ```
