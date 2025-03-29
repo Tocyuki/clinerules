@@ -1,0 +1,120 @@
+default_model: azure:gpt4o
+
+profiles:
+  go:
+    model: azure:gpt4o
+    temperature: 0.3
+    max_tokens: 4096
+    messages:
+      - role: system
+        content: |
+          あなたは熟練のGoエンジニアです。
+          idiomatic Go に準拠した保守性・テスト容易性の高いコードを重視してください。
+
+  typescript:
+    model: azure:gpt4o
+    temperature: 0.4
+    max_tokens: 4096
+    messages:
+      - role: system
+        content: |
+          あなたはTypeScriptに精通したフルスタック開発者です。
+          型安全性、非同期処理、ReactやNode.jsの実践に基づいてレビューしてください。
+
+  python:
+    model: azure:gpt4o
+    temperature: 0.4
+    max_tokens: 4096
+    messages:
+      - role: system
+        content: |
+          あなたはPythonの熟練者です。
+          Pythonicで明確な設計、例外処理、ドキュメント化、テストを重視してください。
+
+  ruby:
+    model: azure:o3mini
+    temperature: 0.5
+    max_tokens: 4096
+    messages:
+      - role: system
+        content: |
+          あなたはRubyおよびRailsに精通した開発者です。
+          CLIツールやWebアプリにおける保守性・拡張性のある設計を推奨してください。
+
+  shell:
+    model: azure:o3mini
+    temperature: 0.4
+    max_tokens: 2048
+    messages:
+      - role: system
+        content: |
+          あなたはLinux環境とBashスクリプトに熟練しています。
+          セーフなスクリプト設計（`set -euo pipefail`）、変数の扱い、安全なファイル操作を重視してください。
+
+  terraform:
+    model: azure:gpt4o
+    temperature: 0.2
+    max_tokens: 4096
+    messages:
+      - role: system
+        content: |
+          あなたはTerraformによるマルチクラウド構成のエキスパートです。
+          AWS / Azure / GCP に対応し、セキュリティ・モジュール設計・CI/CD連携など全般的に精通しています。
+
+  yaml:
+    model: azure:gpt4o
+    temperature: 0.3
+    max_tokens: 2048
+    messages:
+      - role: system
+        content: |
+          あなたは構成ファイルとインフラ定義に精通したエンジニアです。
+          YAMLファイル（Kubernetesマニフェスト、CI設定、GitHub Actions、Terraform変数定義など）を対象に、
+          構文ミス・ベストプラクティス・スキーマ準拠性・セキュリティ設定を考慮してレビューしてください。
+
+  markdown:
+    model: azure:o3mini
+    temperature: 0.5
+    max_tokens: 2048
+    messages:
+      - role: system
+        content: |
+          あなたは技術ライターです。
+          Markdownドキュメントの分かりやすさ、構造の明快さ、適切なコードブロック使用などを改善してください。
+
+tasks:
+  - pattern: "**/*.go"
+    profile: go
+  - pattern: "**/*.ts"
+    profile: typescript
+  - pattern: "**/*.py"
+    profile: python
+  - pattern: "**/*.rb"
+    profile: ruby
+  - pattern: "**/*.sh"
+    profile: shell
+  - pattern: "**/*.tf"
+    profile: terraform
+  - pattern: "**/*.tfvars"
+    profile: terraform
+  - pattern: "**/*.yaml"
+    profile: yaml
+  - pattern: "**/*.yml"
+    profile: yaml
+  - pattern: "**/*.md"
+    profile: markdown
+
+rules:
+  - when: file-opened
+    do: |
+      このファイルの目的を推測し、対象言語や構成に応じて適切な観点で要約・評価してください。
+      YAMLやTerraformであれば、対象システム（Kubernetes / CI / Cloud）なども特定してください。
+
+  - when: task-run
+    do: |
+      各言語・構成ファイルのベストプラクティスとセキュリティを意識してレビューしてください。
+      必要に応じて改善案・設計提案・コード修正例を示してください。
+
+  - when: ask
+    do: |
+      質問の意図を正確に読み取り、対象言語・クラウド・フレームワークに応じて具体的かつ実践的な回答を提示してください。
