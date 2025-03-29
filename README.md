@@ -1,0 +1,2 @@
+# clinerules
+my .clinerules
