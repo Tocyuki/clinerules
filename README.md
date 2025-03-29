@@ -2,19 +2,14 @@
 
 このリポジトリは、Cline を使ってコードレビューやインフラ設計の支援を自動化・効率化する開発環境テンプレートです。
 
-Cline は強力な LLM プロンプトルールとタスクランナーを備えた CLI ツールで、さまざまな AI プロバイダ（OpenAI, Azure OpenAI, Anthropic など）を自由に切り替えて活用できます。
+Cline は強力な LLM プロンプトルールとタスクランナーを備えた **Visual Studio Code 拡張機能** で、さまざまな AI プロバイダ（OpenAI, Azure OpenAI, Anthropic など）を自由に切り替えて活用できます。
 
 ## ✅ セットアップ手順
 
-### 1. Cline のインストール
 
-```bash
-npm install -g cline
-# または
-brew install clinehq/cline/cline
-```
+### 1. 環境変数を `.env` に設定
 
-### 2. 環境変数を `.env` に設定
+`.env` ファイルはプロジェクトルート（例：`your-project/.env`）に配置してください。
 
 ```env
 AZURE_OPENAI_RESOURCE=your-azure-openai-resource-name
@@ -24,7 +19,7 @@ AZURE_OPENAI_API_KEY=your-api-key
 > `.env` は `.gitignore` で除外されており、個人設定を安全に管理できます。
 
 
-### 3. `direnv` の導入と設定（推奨）
+### 2. `direnv` の導入と設定（推奨）
 
 ```bash
 # macOS の場合
@@ -39,26 +34,21 @@ export $(cat .env | xargs)
 ```
 
 
-### 4. Cline の動作確認
-
-```bash
-cline ask "このファイルの目的は？"
-cline run path/to/file.go
-cline run
-```
-
-
-## 📁 ディレクトリ構成
+## 📁 ディレクトリ構成と配置場所
 
 ```
 your-project/
-├── .clinerules             # プロンプトとルールの定義（言語ごとに最適化）
-├── .clineconfig.yaml       # 使用するプロバイダ・モデルの設定
-├── .env                    # 認証キーなどの環境変数
-├── .envrc                  # direnv 対応ファイル
+├── .clinerules             # Cline のルールファイル（プロジェクトルートに配置）
+├── .clineconfig.yaml       # モデル・プロバイダ設定（プロジェクトルート）
+├── .clineconfig.example.yaml # APIキーを除いたテンプレート（プロジェクト共有用）
+├── .env                    # 環境変数ファイル（Git管理除外、ルート）
+├── .env.example            # .env のテンプレート（共有用）
+├── .envrc                  # direnv 対応（ルート）
 ├── .gitignore              # 機密ファイルの除外
 └── README.md               # このファイル
 ```
+
+> すべて **プロジェクトルートに配置** することが前提です。
 
 
 ## 🧠 Cline 活用のポイント
