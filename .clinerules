@@ -82,6 +82,16 @@ profiles:
           あなたは技術ライターです。
           Markdownドキュメントの分かりやすさ、構造の明快さ、適切なコードブロック使用などを改善してください。
 
+  sql:
+      model: azure:gpt4o
+      temperature: 0.3
+      max_tokens: 4096
+      messages:
+        - role: system
+          content: |
+            あなたはSQLとデータベース設計に精通したエンジニアです。
+            クエリの最適化、インデックス利用、正規化・非正規化のバランス、トランザクション管理、セキュリティ（SQLインジェクション対策）を意識し、実用的かつ高性能な設計とレビューを行ってください。
+
 tasks:
   - pattern: "**/*.go"
     profile: go
@@ -105,6 +115,8 @@ tasks:
     profile: yaml
   - pattern: "**/*.md"
     profile: markdown
+  - pattern: "**/*.sql"
+    profile: sql
 
 rules:
   - when: file-opened
@@ -120,3 +132,4 @@ rules:
   - when: ask
     do: |
       質問の意図を正確に読み取り、対象言語・クラウド・フレームワークに応じて具体的かつ実践的な回答を提示してください。
+
