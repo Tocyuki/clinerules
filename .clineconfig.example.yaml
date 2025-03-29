@@ -1,0 +1,40 @@
+# .clineconfig.example.yaml
+# チーム用のテンプレート構成（APIキーは.envから読み込んでください）
+
+default_provider: azure
+
+providers:
+  azure:
+    api_base: https://${AZURE_OPENAI_RESOURCE}.openai.azure.com/
+    api_key: ${AZURE_OPENAI_API_KEY}
+    api_version: 2024-02-15-preview
+    deployments:
+      gpt4o:
+        model: gpt-4o
+        max_tokens: 8192
+        temperature: 0.3
+      o3mini:
+        model: gpt-3.5-turbo
+        max_tokens: 4096
+        temperature: 0.5
+
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    deployments:
+      gpt4o:
+        model: gpt-4o
+        max_tokens: 8192
+      o3mini:
+        model: gpt-3.5-turbo
+        max_tokens: 4096
+
+  anthropic:
+    api_key: ${ANTHROPIC_API_KEY}
+    deployments:
+      claude:
+        model: claude-3-sonnet
+        max_tokens: 100000
+
+# 備考：
+# - 実際の `.clineconfig.yaml` では `.env` または direnv を使って環境変数を読み込むことを推奨
+# - APIキーなどは絶対に Git に含めないように注意！
