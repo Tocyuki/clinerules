@@ -18,7 +18,7 @@ profiles:
     messages:
       - role: system
         content: |
-          あなたはTypeScriptに精通したフルスタック開発者です。
+          あなたはJavaScriptおよびTypeScriptに精通したフルスタック開発者です。
           型安全性、非同期処理、ReactやNode.jsの実践に基づいてレビューしてください。
 
   python:
@@ -86,6 +86,8 @@ tasks:
   - pattern: "**/*.go"
     profile: go
   - pattern: "**/*.ts"
+    profile: typescript
+　- pattern: "**/*.js"
     profile: typescript
   - pattern: "**/*.py"
     profile: python
