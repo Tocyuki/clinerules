@@ -4,10 +4,10 @@ providers:
   azure:
     api_base: https://${AZURE_OPENAI_RESOURCE}.openai.azure.com/
     api_key: ${AZURE_OPENAI_API_KEY}
-    api_version: 2024-02-15-preview
+    api_version: 2025-01-01-preview
     deployments:
       gpt4o:
-        model: gpt-4o
+        model: gpt-4.5-preview
         max_tokens: 8192
         temperature: 0.3
       o3mini:
