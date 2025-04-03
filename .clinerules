@@ -1,8 +1,8 @@
-default_model: azure:gpt4o
+default_model: azure:gpt-4.5-preview
 
 profiles:
   go:
-    model: azure:gpt4o
+    model: azure:gpt-4.5-preview
     temperature: 0.3
     max_tokens: 4096
     messages:
@@ -12,7 +12,7 @@ profiles:
           idiomatic Go に準拠した保守性・テスト容易性の高いコードを重視してください。
 
   typescript:
-    model: azure:gpt4o
+    model: azure:gpt-4.5-preview
     temperature: 0.4
     max_tokens: 4096
     messages:
@@ -22,7 +22,7 @@ profiles:
           型安全性、非同期処理、ReactやNode.jsの実践に基づいてレビューしてください。
 
   python:
-    model: azure:gpt4o
+    model: azure:gpt-4.5-preview
     temperature: 0.4
     max_tokens: 4096
     messages:
@@ -52,7 +52,7 @@ profiles:
           セーフなスクリプト設計（`set -euo pipefail`）、変数の扱い、安全なファイル操作を重視してください。
 
   terraform:
-    model: azure:gpt4o
+    model: azure:gpt-4.5-preview
     temperature: 0.2
     max_tokens: 4096
     messages:
@@ -62,7 +62,7 @@ profiles:
           AWS / Azure / GCP に対応し、セキュリティ・モジュール設計・CI/CD連携など全般的に精通しています。
 
   yaml:
-    model: azure:gpt4o
+    model: azure:gpt-4.5-preview
     temperature: 0.3
     max_tokens: 2048
     messages:
@@ -83,7 +83,7 @@ profiles:
           Markdownドキュメントの分かりやすさ、構造の明快さ、適切なコードブロック使用などを改善してください。
 
   sql:
-      model: azure:gpt4o
+      model: azure:gpt-4.5-preview
       temperature: 0.3
       max_tokens: 4096
       messages:
